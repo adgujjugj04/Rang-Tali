@@ -1,0 +1,6 @@
+{
+  "name": "Rang Taali Raas",
+  "description": "Experience Gujarat's premium Navratri celebration. Discover Garba events, sponsors, artists, marketing collaborations, and book passes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
