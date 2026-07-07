@@ -76,18 +76,20 @@ export default function Hero({ onBookClassClick, onSponsorClick }: HeroProps) {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfPxeOHOAUhqgVQ-njk8jNpojXxSvlGwqPgP3zmEhxlHZTZzQ/viewform?usp=publish-editor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-rose-600 text-purple-950 font-extrabold text-base tracking-wide shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group"
+          >
+            Official Online Registration (Google Form)
+            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+          </a>
           <button
             onClick={onBookClassClick}
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-rose-600 text-purple-950 font-bold text-base tracking-wide shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 group"
-          >
-            Book Your Class
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button
-            onClick={onSponsorClick}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-purple-950/40 hover:bg-purple-900/40 text-amber-400 hover:text-amber-300 font-semibold text-base tracking-wide border border-amber-500/30 hover:border-amber-500/60 shadow-md backdrop-blur-md hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
           >
-            Explore Class Batches
+            Generate Digital ID Pass
           </button>
         </div>
 

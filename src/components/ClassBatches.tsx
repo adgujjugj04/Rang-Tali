@@ -8,14 +8,6 @@ interface ClassBatchesProps {
 }
 
 export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-
-  const categories = ['All', 'Beginner', 'Girls Only', 'Intermediate', 'Advanced', 'Custom / Weekend'];
-
-  const filteredBatches = activeCategory === 'All'
-    ? BATCH_DATA
-    : BATCH_DATA.filter(b => b.category === activeCategory);
-
   return (
     <section id="sponsorship" className="relative py-20 sm:py-28 bg-[#1A0F1E] mandala-bg overflow-hidden border-t border-purple-theme/50">
       {/* Decorative gradient overlay */}
@@ -31,10 +23,10 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
             <span className="w-4 h-1 bg-gold-theme rounded-full" />
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
-            Select Your Garba Training Batch
+            Exclusive Pre-Navratri Training Batch
           </h2>
           <p className="font-sans text-sm sm:text-base text-gray-400 font-light leading-relaxed">
-            Choose from six daily training batches available between 6:00 PM and 10:00 PM, including specialized girls-only slots and custom weekend sessions.
+            Join our premium pre-Navratri batch starting July 15th. Get prepared to dance gracefully and lead the festive circles.
           </p>
         </div>
 
@@ -62,9 +54,9 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
             <div className="grid sm:grid-cols-2 gap-4">
               {[
                 "Step-by-step breakdown of complex loops",
-                "Dedicated Girls-Only Batches for privacy",
-                "Advanced Dodhiya (6, 12, 18 steps)",
-                "Custom couple choreography workshops",
+                "Personal invitation price adjustment options",
+                "Advanced Dodhiya (6, 12, 18 steps) and hand mudras",
+                "Traditional posture & posture alignment",
                 "Postural alignment & stamina building",
                 "Live dhol beats drum coordination"
               ].map((benefit, idx) => (
@@ -79,40 +71,16 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
           </div>
         </div>
 
-        {/* Filter Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
-                activeCategory === cat
-                  ? 'bg-gold-theme text-purple-theme shadow-md shadow-gold-theme/20 font-bold'
-                  : 'bg-white/5 text-gray-300 hover:text-white border border-white/10 hover:border-gold-theme/20'
-              }`}
-            >
-              {cat} {cat === 'Girls Only' && '👩'}
-            </button>
-          ))}
-        </div>
-
-        {/* Six Batch Cards Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBatches.map((plan) => (
+        {/* Single Featured Batch Card (Centered) */}
+        <div className="flex justify-center">
+          {BATCH_DATA.map((plan) => (
             <div
               key={plan.id}
-              className={`relative flex flex-col justify-between rounded-3xl p-8 transition-all duration-300 shadow-xl ${
-                plan.recommended
-                  ? 'bg-gradient-to-b from-[#2A0134] to-[#1A0F1E] border-2 border-gold-theme scale-102 z-10 glow-gold'
-                  : 'immersive-glass hover:border-gold-theme/40'
-              }`}
+              className="relative flex flex-col justify-between rounded-3xl p-8 transition-all duration-300 shadow-xl bg-gradient-to-b from-[#2A0134] to-[#1A0F1E] border-2 border-gold-theme scale-102 z-10 glow-gold w-full max-w-xl"
             >
-              {/* Highlight ribbon for Girls-Only / Recommended */}
-              {plan.recommended && (
-                <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gold-theme to-saffron-theme text-purple-theme text-[10px] sm:text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-widest shadow-md">
-                  Most Popular Slot 👩
-                </div>
-              )}
+              <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-gold-theme to-saffron-theme text-purple-theme text-[10px] sm:text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-widest shadow-md whitespace-nowrap">
+                Navratri Special 🌟
+              </div>
 
               {/* Top Section */}
               <div>
@@ -120,33 +88,39 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
                   {plan.category} Batch
                 </span>
                 
-                <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-white mb-2 leading-tight">
+                <h3 className="font-serif text-xl sm:text-3xl font-extrabold text-white mb-2 leading-tight">
                   {plan.name}
                 </h3>
 
                 {/* Timing Badge */}
-                <div className="flex items-center gap-2 text-xs text-gray-300 mb-4 bg-white/5 p-2 rounded-xl border border-white/5">
-                  <Clock size={14} className="text-gold-theme" />
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-300 mb-4 bg-white/5 p-3 rounded-xl border border-white/5">
+                  <Clock size={16} className="text-gold-theme" />
                   <span className="font-medium">{plan.timing}</span>
                 </div>
 
                 {/* Price Display */}
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="font-serif text-2xl sm:text-3xl font-black text-white">{plan.price}</span>
+                <div className="flex flex-col gap-1 mb-4 bg-yellow-400/5 p-4 rounded-2xl border border-gold-theme/20">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-xs text-gold-theme font-bold uppercase tracking-wider">Event Price:</span>
+                    <span className="font-serif text-3xl sm:text-4xl font-black text-white">{plan.price}</span>
+                  </div>
+                  <p className="text-[11px] text-yellow-100/70 font-light mt-1">
+                    * If you want to invite someone personally, the price will be adjusted accordingly for the event.
+                  </p>
                 </div>
 
-                <p className="text-xs text-gray-400 font-light leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-gray-300 font-light leading-relaxed mb-6">
                   {plan.description}
                 </p>
 
                 {/* Instructor & Spots Details */}
                 <div className="border-t border-white/10 my-4 pt-4 space-y-2">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-400 flex items-center gap-1.5"><User size={12} className="text-gold-theme" /> Instructor:</span>
-                    <span className="text-white font-medium">{plan.instructor}</span>
+                  <div className="flex justify-between items-center text-xs sm:text-sm">
+                    <span className="text-gray-400 flex items-center gap-1.5"><User size={14} className="text-gold-theme" /> Instructor:</span>
+                    <span className="text-white font-semibold">{plan.instructor}</span>
                   </div>
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-gray-400 flex items-center gap-1.5"><Users size={12} className="text-gold-theme" /> Seats Remaining:</span>
+                  <div className="flex justify-between items-center text-xs sm:text-sm">
+                    <span className="text-gray-400 flex items-center gap-1.5"><Users size={14} className="text-gold-theme" /> Seats Remaining:</span>
                     <span className="text-rose-400 font-extrabold bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">{plan.spotsLeft} spots left</span>
                   </div>
                 </div>
@@ -154,10 +128,10 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
                 {/* Benefits list */}
                 <div className="border-t border-white/10 my-4 pt-4">
                   <h4 className="text-xs uppercase tracking-widest text-gold-theme font-bold mb-3">What you'll master:</h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {plan.benefits.map((benefit, idx) => (
-                      <li key={idx} className="flex gap-2 items-start text-xs text-gray-300">
-                        <CheckCircle2 className="text-gold-theme shrink-0 mt-0.5" size={12} />
+                      <li key={idx} className="flex gap-2 items-start text-xs sm:text-sm text-gray-300">
+                        <CheckCircle2 className="text-gold-theme shrink-0 mt-0.5" size={14} />
                         <span className="font-light leading-snug">{benefit}</span>
                       </li>
                     ))}
@@ -169,13 +143,9 @@ export default function ClassBatches({ onBookClassClick }: ClassBatchesProps) {
               <div className="mt-8 pt-4 border-t border-white/10">
                 <button
                   onClick={() => onBookClassClick(plan.id, plan.name)}
-                  className={`w-full py-3.5 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 ${
-                    plan.recommended
-                      ? 'bg-gradient-to-r from-gold-theme via-gold-theme to-saffron-theme text-purple-theme shadow-md shadow-gold-theme/20 hover:scale-105'
-                      : 'bg-gold-theme/10 hover:bg-gold-theme/20 text-gold-theme border border-gold-theme/30 hover:border-gold-theme/50'
-                  }`}
+                  className="w-full py-4 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 cursor-pointer flex items-center justify-center gap-1.5 bg-gradient-to-r from-gold-theme via-gold-theme to-saffron-theme text-purple-theme shadow-md shadow-gold-theme/20 hover:scale-105 active:scale-95"
                 >
-                  Book Your Class
+                  Book Your Pre-Navratri Seat
                 </button>
               </div>
             </div>

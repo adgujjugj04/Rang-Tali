@@ -15,7 +15,7 @@ export interface Batch {
   description: string;
   price: string;
   recommended?: boolean;
-  category: 'Beginner' | 'Intermediate' | 'Advanced' | 'Girls Only' | 'Custom / Weekend';
+  category: string;
   spotsLeft: number;
   instructor: string;
   benefits: string[];
@@ -35,6 +35,8 @@ export interface Inquiry {
   id: string;
   name: string;
   phone: string;
+  whatsappNumber?: string;
+  address?: string;
   interest: 'Class Booking' | 'Girls-Only Session' | 'Special Workshop' | 'General Inquiry';
   message: string;
   timestamp: string;

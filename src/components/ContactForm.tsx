@@ -12,7 +12,9 @@ interface ContactFormProps {
 export default function ContactForm({ initialInterest = 'Class Booking', initialMessage = '' }: ContactFormProps) {
   // Form State
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(''); // Mobile number
+  const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [address, setAddress] = useState('');
   const [interest, setInterest] = useState('Class Booking');
   const [selectedBatch, setSelectedBatch] = useState(BATCH_DATA[0].id);
   const [experienceLevel, setExperienceLevel] = useState<'Beginner' | 'Intermediate' | 'Advanced'>('Beginner');
@@ -119,11 +121,23 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
   const validate = () => {
     const tempErrors: { [key: string]: string } = {};
     if (!name.trim()) tempErrors.name = 'Full Name is required';
+    
     if (!phone.trim()) {
-      tempErrors.phone = 'Phone number is required';
+      tempErrors.phone = 'Mobile number is required';
     } else if (!/^[0-9+() \-]{10,15}$/.test(phone.trim())) {
-      tempErrors.phone = 'Please enter a valid phone number';
+      tempErrors.phone = 'Please enter a valid mobile number';
     }
+
+    if (!whatsappNumber.trim()) {
+      tempErrors.whatsappNumber = 'WhatsApp number is required';
+    } else if (!/^[0-9+() \-]{10,15}$/.test(whatsappNumber.trim())) {
+      tempErrors.whatsappNumber = 'Please enter a valid WhatsApp number';
+    }
+
+    if (!address.trim()) {
+      tempErrors.address = 'Student Address is required';
+    }
+
     if (!photoUrl) {
       tempErrors.photo = 'Please add a profile photo for your Academy ID card';
     }
@@ -142,6 +156,8 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
       id: inquiryId,
       name: name.trim(),
       phone: phone.trim(),
+      whatsappNumber: whatsappNumber.trim(),
+      address: address.trim(),
       interest: interest as any,
       message: message.trim() || `Enrolling in ${chosenBatchObj?.name || 'Garba Class'}`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString(),
@@ -163,6 +179,8 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
   const resetForm = () => {
     setName('');
     setPhone('');
+    setWhatsappNumber('');
+    setAddress('');
     setMessage('');
     setPhotoUrl('');
     setIsSubmitted(false);
@@ -173,9 +191,9 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
   const triggerWhatsAppDirect = () => {
     const chosenBatchObj = BATCH_DATA.find(b => b.id === selectedBatch);
     const text = encodeURIComponent(
-      `Hello Rang Taali Academy Team, my name is ${name || '[Your Name]'} (Phone: ${phone || '[Your Phone]'}). I have submitted my class registration details online for the "${chosenBatchObj?.name || 'Garba Class'}" (${chosenBatchObj?.timing || ''}). Please confirm my seat availability.`
+      `Hello Rang Taali Academy Team, my name is ${name || '[Your Name]'} (Mobile: ${phone || '[Your Phone]'}, WhatsApp: ${whatsappNumber || '[Your WhatsApp]'}, Address: ${address || '[Your Address]'}). I have submitted my class registration details online for the "${chosenBatchObj?.name || 'Garba Class'}" (${chosenBatchObj?.timing || ''}). Please confirm my seat availability.`
     );
-    window.open(`https://api.whatsapp.com/send?phone=919825012345&text=${text}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?phone=916351189801&text=${text}`, '_blank');
   };
 
   const handlePrintCard = () => {
@@ -222,15 +240,18 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
 
               <div className="space-y-6">
                 
-                {/* Phone */}
+                 {/* Phone */}
                 <div className="flex gap-4 items-start group">
                   <div className="w-10 h-10 rounded-xl bg-gold-theme/5 flex items-center justify-center text-gold-theme border border-gold-theme/10 group-hover:bg-gold-theme/20 group-hover:border-gold-theme/30 transition-all shrink-0">
                     <Phone size={18} />
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Academy Helpline</h4>
-                    <a href="tel:+919825012345" className="text-sm sm:text-base text-white hover:text-gold-theme font-medium mt-1 block">
-                      +91 98250 12345
+                    <a href="tel:+916351189801" className="text-sm text-white hover:text-gold-theme font-medium mt-1 block">
+                      +91 63511 89801
+                    </a>
+                    <a href="tel:+919714705143" className="text-sm text-white hover:text-gold-theme font-medium block">
+                      +91 97147 05143
                     </a>
                   </div>
                 </div>
@@ -242,8 +263,8 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Direct WhatsApp Query</h4>
-                    <a href="https://wa.me/919825012345" target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base text-white hover:text-green-400 font-medium mt-1 block">
-                      +91 98250 12345
+                    <a href="https://wa.me/916351189801" target="_blank" rel="noopener noreferrer" className="text-sm text-white hover:text-green-400 font-medium mt-1 block">
+                      +91 63511 89801 (Click to Chat)
                     </a>
                   </div>
                 </div>
@@ -267,9 +288,9 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Main Dance Studio</h4>
-                    <p className="text-xs sm:text-sm text-gray-300 font-light mt-1 leading-relaxed">
-                      Rang Taali Premium Dance Studios, 3rd Floor, Golden Heritage Plaza, S.G. Highway, Ahmedabad, Gujarat, India.
+                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Academy Open Ground Venue</h4>
+                    <p className="text-xs text-gray-300 font-light mt-1 leading-relaxed">
+                      Prayosha Plot No. 1870, A to Z વાળો ખાંચો, Madhumahel Appartment ની સામે, Rupani Circle, Bhavnagar, Gujarat, India.
                     </p>
                   </div>
                 </div>
@@ -305,15 +326,15 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
             <div className="rounded-3xl border border-white/10 overflow-hidden relative aspect-video bg-white/5 group">
               <div className="absolute inset-0 bg-[#1A0F1E] flex items-center justify-center flex-col text-center p-6">
                 <MapPin className="text-gold-theme animate-bounce mb-2" size={32} />
-                <h4 className="font-serif text-sm font-bold text-white mb-1">Rang Taali Dance Studios</h4>
-                <p className="text-[11px] text-gray-400 max-w-xs mb-3 font-light">Spacious floor plans, safety cameras, filtered water facility, and ample secure parking.</p>
+                <h4 className="font-serif text-sm font-bold text-white mb-1">Rang Taali Open Ground Venue</h4>
+                <p className="text-[11px] text-gray-400 max-w-xs mb-3 font-light">Spacious open ground, secure bounds, live music stages, and ample visitor parking.</p>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-1.5 rounded-full bg-gold-theme/10 border border-gold-theme/20 text-[10px] uppercase font-bold text-gold-theme hover:bg-gold-theme hover:text-[#1A0F1E] transition-all flex items-center gap-1 cursor-pointer"
                 >
-                  Get Studio Directions <ExternalLink size={10} />
+                  Get Ground Directions <ExternalLink size={10} />
                 </a>
               </div>
             </div>
@@ -326,6 +347,31 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
               
               {/* Highlight line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold-theme via-gold-theme to-saffron-theme" />
+
+              {/* Google Form Direct Registration Banner */}
+              <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-rose-600/10 border border-gold-theme/30 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-gold-theme/50 transition-all duration-300">
+                <div className="space-y-1 text-center sm:text-left">
+                  <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+                    <span className="flex h-2 w-2 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold-theme opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-gold-theme"></span>
+                    </span>
+                    <span className="text-[10px] font-bold text-gold-theme uppercase tracking-wider">Official Registration Link</span>
+                  </div>
+                  <h4 className="font-serif text-base font-bold text-white">Google Form Registration Portal</h4>
+                  <p className="text-[11px] text-gray-400 font-light max-w-sm">
+                    Fill the official academy google form directly to secure your training batch slot instantly!
+                  </p>
+                </div>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfPxeOHOAUhqgVQ-njk8jNpojXxSvlGwqPgP3zmEhxlHZTZzQ/viewform?usp=publish-editor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-theme to-saffron-theme text-purple-950 font-extrabold text-xs tracking-wide shadow-md hover:shadow-gold-theme/30 hover:scale-[1.02] transition-all flex items-center justify-center gap-1.5 shrink-0"
+                >
+                  Open Google Form <ExternalLink size={12} />
+                </a>
+              </div>
 
               {/* Feedback Success State - LIVE ADMISSION CARD GENERATOR */}
               {isSubmitted && currentSubmission ? (
@@ -380,6 +426,18 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                           <span className="text-[8px] uppercase tracking-wider text-gray-400 font-bold block">Mobile Contact</span>
                           <span className="text-xs font-mono font-medium text-gray-200">{currentSubmission.phone}</span>
                         </div>
+                        {currentSubmission.whatsappNumber && (
+                          <div>
+                            <span className="text-[8px] uppercase tracking-wider text-gray-400 font-bold block">WhatsApp Contact</span>
+                            <span className="text-xs font-mono font-medium text-gray-200">{currentSubmission.whatsappNumber}</span>
+                          </div>
+                        )}
+                        {currentSubmission.address && (
+                          <div>
+                            <span className="text-[8px] uppercase tracking-wider text-gray-400 font-bold block">Address</span>
+                            <span className="text-[10px] text-gray-200 font-medium block leading-tight max-w-[180px] break-words">{currentSubmission.address}</span>
+                          </div>
+                        )}
                         <div>
                           <span className="text-[8px] uppercase tracking-wider text-gray-400 font-bold block">Experience Level</span>
                           <span className="text-[10px] font-bold text-gold-theme bg-gold-theme/10 border border-gold-theme/20 px-2 py-0.5 rounded inline-block mt-0.5">
@@ -485,16 +543,16 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                     )}
                   </div>
 
-                  {/* Phone & Experience Level row */}
+                  {/* Mobile & WhatsApp Numbers */}
                   <div className="grid sm:grid-cols-2 gap-6">
                     
-                    {/* Phone Number */}
+                    {/* Mobile Number */}
                     <div>
-                      <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Phone / WhatsApp Number</label>
+                      <label htmlFor="phone" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Mobile Number</label>
                       <input
                         id="phone"
                         type="tel"
-                        placeholder="e.g. +91 98250 12345"
+                        placeholder="e.g. 63511 89801"
                         value={phone}
                         onChange={(e) => {
                           setPhone(e.target.value);
@@ -511,6 +569,57 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                       )}
                     </div>
 
+                    {/* WhatsApp Number */}
+                    <div>
+                      <label htmlFor="whatsappNumber" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">WhatsApp Number</label>
+                      <input
+                        id="whatsappNumber"
+                        type="tel"
+                        placeholder="e.g. 97147 05143"
+                        value={whatsappNumber}
+                        onChange={(e) => {
+                          setWhatsappNumber(e.target.value);
+                          if (errors.whatsappNumber) setErrors(prev => ({ ...prev, whatsappNumber: '' }));
+                        }}
+                        className={`w-full px-5 py-3.5 rounded-xl bg-white/5 border text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-theme/80 transition-colors ${
+                          errors.whatsappNumber ? 'border-rose-500' : 'border-white/10'
+                        }`}
+                      />
+                      {errors.whatsappNumber && (
+                        <span className="text-xs text-rose-400 mt-1.5 flex items-center gap-1">
+                          <AlertCircle size={12} /> {errors.whatsappNumber}
+                        </span>
+                      )}
+                    </div>
+
+                  </div>
+
+                  {/* Student Address Field */}
+                  <div>
+                    <label htmlFor="address" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Student Address</label>
+                    <textarea
+                      id="address"
+                      rows={2}
+                      placeholder="e.g. Rupani Circle, Bhavnagar"
+                      value={address}
+                      onChange={(e) => {
+                        setAddress(e.target.value);
+                        if (errors.address) setErrors(prev => ({ ...prev, address: '' }));
+                      }}
+                      className={`w-full px-5 py-3 rounded-xl bg-white/5 border text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-theme/80 transition-colors resize-none ${
+                        errors.address ? 'border-rose-500' : 'border-white/10'
+                      }`}
+                    />
+                    {errors.address && (
+                      <span className="text-xs text-rose-400 mt-1.5 flex items-center gap-1">
+                        <AlertCircle size={12} /> {errors.address}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Garba Level & Preferred Batch Row */}
+                  <div className="grid sm:grid-cols-2 gap-6">
+
                     {/* Dropdown Select Experience Level */}
                     <div>
                       <label htmlFor="experience" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Your Garba Level</label>
@@ -526,23 +635,23 @@ export default function ContactForm({ initialInterest = 'Class Booking', initial
                       </select>
                     </div>
 
-                  </div>
+                    {/* Dropdown Select Batch */}
+                    <div>
+                      <label htmlFor="selectedBatch" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Preferred Class Batch</label>
+                      <select
+                        id="selectedBatch"
+                        value={selectedBatch}
+                        onChange={(e) => setSelectedBatch(e.target.value)}
+                        className="w-full px-5 py-3.5 rounded-xl bg-[#1A0F1E] border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-gold-theme/80 transition-colors cursor-pointer font-medium"
+                      >
+                        {BATCH_DATA.map((batch) => (
+                          <option key={batch.id} value={batch.id}>
+                            {batch.name} ({batch.timing})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
 
-                  {/* Dropdown Select Batch */}
-                  <div>
-                    <label htmlFor="selectedBatch" className="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Select Preferred Class Batch</label>
-                    <select
-                      id="selectedBatch"
-                      value={selectedBatch}
-                      onChange={(e) => setSelectedBatch(e.target.value)}
-                      className="w-full px-5 py-3.5 rounded-xl bg-[#1A0F1E] border border-white/10 text-sm text-gray-300 focus:outline-none focus:border-gold-theme/80 transition-colors cursor-pointer font-medium"
-                    >
-                      {BATCH_DATA.map((batch) => (
-                        <option key={batch.id} value={batch.id}>
-                          {batch.name} ({batch.timing})
-                        </option>
-                      ))}
-                    </select>
                   </div>
 
                   {/* PREMIUM FILE UPLOAD: DRAG AND DROP PHOTO UPLOAD */}

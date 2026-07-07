@@ -7,7 +7,7 @@ export const HERO_CONTENT = {
   trustBadges: [
     { text: "6 Daily Batches", icon: "Clock" },
     { text: "Girls-Only Slots", icon: "Users" },
-    { text: "Air-Conditioned", icon: "Sparkles" },
+    { text: "Open Ground Venue", icon: "Map" },
     { text: "Live Dhol Training", icon: "Music" },
     { text: "Beginner to Pro", icon: "ShieldCheck" }
   ]
@@ -15,7 +15,7 @@ export const HERO_CONTENT = {
 
 export const ABOUT_CONTENT = {
   title: "Why Learn With Rang Taali Academy?",
-  description: "Rang Taali Academy is Gujarat’s ultimate Garba and Raas learning ecosystem. We don’t just teach dance steps; we build your confidence, posture, and rhythm to help you lead any circle. From absolute beginners starting with basic hand-claps to advanced performers mastering rapid spins and classical Dodhiya, we provide structured, high-energy sessions in premium, modern dance studios.",
+  description: "Rang Taali Academy is Gujarat’s ultimate Garba and Raas learning ecosystem. We don’t just teach dance steps; we build your confidence, posture, and rhythm to help you lead any circle. From absolute beginners starting with basic hand-claps to advanced performers mastering rapid spins and classical Dodhiya, we provide structured, high-energy sessions in our premium open ground venue.",
   bullets: [
     "Six different batches between 6:00 PM and 10:00 PM to match your work schedule.",
     "Comfortable, dedicated Girls-Only sessions led entirely by senior female choreographers.",
@@ -137,7 +137,7 @@ export const METHODOLOGY_CARDS = [
 export const CLASS_BENEFITS = [
   "Comprehensive step-by-step curriculum for all skill levels",
   "Expert feedback from state-champion certified choreographers",
-  "Spacious air-conditioned premium dance floors with high-impact wooden-sprung structure",
+  "Spacious premium open ground arena with live music stages and ample breathing space",
   "Comfortable and private Girls-Only batches with dedicated female leads",
   "Live dhol players during advanced sessions to practice with real rhythms",
   "Complimentary video shoots and digital portfolio of your choreography showcase",
@@ -146,100 +146,21 @@ export const CLASS_BENEFITS = [
 
 export const BATCH_DATA: Batch[] = [
   {
-    id: "batch-beginners",
-    name: "Beginners Essential Batch",
-    timing: "6:00 PM - 7:00 PM (Mon - Fri)",
-    description: "Perfect for absolute beginners. We build your foundation, posture, and teach basic 2-Taali and 3-Taali with gentle rhythms.",
-    price: "₹2,500 / month",
-    category: "Beginner",
-    spotsLeft: 8,
-    instructor: "Radhika Vyas",
-    benefits: [
-      "2-Taali & 3-Taali Basics",
-      "Hand clap & foot timing drills",
-      "Rhythm speed adjustment training",
-      "Comfortable slower tempo pace"
-    ]
-  },
-  {
-    id: "batch-girls",
-    name: "Girls-Only Special Session",
-    timing: "6:30 PM - 7:30 PM (Mon - Fri)",
-    description: "Exclusive women-only batch focusing on grace, circular coordination, and styling. Led entirely by senior female choreographers in a secure setting.",
-    price: "₹3,000 / month",
+    id: "batch-pre-navratri",
+    name: "Pre-Navratri Special Batch",
+    timing: "Starting July 15th (Before Navratri)",
+    description: "The official premium pre-Navratri training batch. Note: If you want to invite someone personally, the price will be adjusted accordingly for the event.",
+    price: "₹1,300",
     recommended: true,
-    category: "Girls Only",
-    spotsLeft: 5,
-    instructor: "Radhika Vyas & Anjali Dave",
-    benefits: [
-      "100% Women-Only Environment",
-      "Focus on graceful body loops & styling",
-      "Advanced circular synchronizations",
-      "Dandiya techniques included"
-    ]
-  },
-  {
-    id: "batch-dodhiya",
-    name: "Traditional Dodhiya Batch",
-    timing: "7:00 PM - 8:00 PM (Mon - Fri)",
-    description: "Intermediate level training. Master the famous traditional Dodhiya variations (6, 12, 18 steps) and circular group formations.",
-    price: "₹2,800 / month",
-    category: "Intermediate",
+    category: "Pre-Navratri Special",
     spotsLeft: 12,
-    instructor: "Hardik Patel",
-    benefits: [
-      "Classic Dodhiya variations",
-      "Tippani step integrations",
-      "Inward & outward loop control",
-      "Group coordination practice"
-    ]
-  },
-  {
-    id: "batch-fitness",
-    name: "High-Energy Garba Fitness",
-    timing: "8:00 PM - 9:00 PM (Mon - Fri)",
-    description: "Cardio-intensive fast-paced batch designed to build extreme physical stamina, rapid footwork, and core endurance for Navratri.",
-    price: "₹2,500 / month",
-    category: "Advanced",
-    spotsLeft: 15,
-    instructor: "Hardik Patel & Team",
-    benefits: [
-      "High-tempo cardio choreography",
-      "Stamina & agility builders",
-      "Rapid spin control drill",
-      "Calorie-burning rhythmic routine"
-    ]
-  },
-  {
-    id: "batch-advanced",
-    name: "Advanced Style & Choreography",
-    timing: "9:00 PM - 10:00 PM (Mon - Fri)",
-    description: "For experienced dancers. Master complex fusion styles, rapid multiple spins, modern styling, and specialized solo showcase routines.",
-    price: "₹3,500 / month",
-    category: "Advanced",
-    spotsLeft: 6,
-    instructor: "Hardik Patel",
-    benefits: [
-      "Rapid triple-spins mastery",
-      "Fusion Garba choreographies",
-      "Solo showmanship training",
-      "Video portfolio recording session"
-    ]
-  },
-  {
-    id: "batch-weekend",
-    name: "Weekend Couples & Private Workshop",
-    timing: "Saturdays & Sundays (7:30 PM - 9:30 PM)",
-    description: "Unspecified specialized customized batch. Perfect for couples, families, private friend groups, or children seeking custom choreographies.",
-    price: "₹4,000 / couple",
-    category: "Custom / Weekend",
-    spotsLeft: 4,
     instructor: "Radhika Vyas & Hardik Patel",
     benefits: [
-      "Customized private pace & style",
-      "Ideal for busy working professionals",
-      "Couple-specific coordination loops",
-      "Family & kids friendly choreography"
+      "Customized private pace & style coordination",
+      "Comprehensive step-by-step loop breakdown",
+      "Hand clap & posture alignment drills",
+      "Perfect timing adjustment for upcoming circles",
+      "Personal invitation price adjustment available"
     ]
   }
 ];
@@ -296,7 +217,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     id: "test-2",
     name: "Rohan Shah",
     role: "Regular Student (Dodhiya Batch)",
-    review: "Hardik sir’s Dodhiya tutorials are incredible. He breaks down the complex 12-step and 18-step traditional routines so cleanly. The wooden studio flooring is also super friendly on the knees!",
+    review: "Hardik sir’s Dodhiya tutorials are incredible. He breaks down the complex 12-step and 18-step traditional routines so cleanly. The open-air grass ground is also super friendly on the feet!",
     rating: 5,
     avatar: "RS"
   },
